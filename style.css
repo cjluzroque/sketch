@@ -1,1 +1,26 @@
 /* Styling for Etch-a-Sketch */
+
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 200px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.box {
+    padding: 8px;
+}
+
+.noHover {
+    background-color: green;
+}
+
+.hover {
+    background-color: pink;
+}

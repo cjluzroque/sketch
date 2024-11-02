@@ -9,6 +9,10 @@ let currentColor = "Black";
 let randomize = false;
 let size = '';
 
+function isNumber(value) {
+    return typeof value === 'number';
+}
+
 button.addEventListener("click", function () {
 
     // Check input and then if under 100, set as the size

@@ -68,10 +68,10 @@ button.addEventListener("click", function () {
             randomize = false;
             current.setAttribute("class", "");
             current.removeAttribute("style");
+            // Set mouse down events to the color
             currentColor = color.textContent;
+            // Set feedback to the color 
             current.classList.add(currentColor.toLowerCase());
-            console.log(currentColor);
-            console.log(randomize);
         });
     });
 
@@ -81,7 +81,6 @@ button.addEventListener("click", function () {
         randomize = true;
         current.setAttribute("class", "");
         current.classList.add("eraser");
-        console.log(randomize);
     });
 
     // CHANGING BOXES
@@ -117,7 +116,9 @@ button.addEventListener("click", function () {
                 // Set class to only box and then set color 
                 target.setAttribute("class", "box");
                 target.removeAttribute("style");
-                target.classList.add(currentColor.toLowerCase());
+                if (currentColor.toLowerCase() != "eraser") {
+                    target.classList.add(currentColor.toLowerCase());
+                }
                 return;     
             }      
         });

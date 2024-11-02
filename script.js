@@ -10,6 +10,7 @@ const current = document.querySelector('#current');
 let currentColor = "Black"; 
 let randomize = false;
 let size = '';
+current.classList.add(currentColor.toLowerCase());
 
 // Get random color
 function getRandomColor() {

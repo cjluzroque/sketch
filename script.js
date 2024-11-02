@@ -117,6 +117,7 @@ button.addEventListener("click", function () {
     const clear = document.querySelector('#clear');
     clear.addEventListener("click", function() {
         targets.forEach(target => {
+            target.removeAttribute("style");
             target.setAttribute("class", "box");
         });
     });

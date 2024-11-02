@@ -66,8 +66,6 @@ button.addEventListener("click", function () {
         console.log(randomize);
     });
 
-
-
     // Look at all boxes made 
     const targets = document.querySelectorAll('.box');
 
@@ -129,8 +127,26 @@ button.addEventListener("click", function () {
                     target.classList.remove("red");
                     target.classList.add("blue");
                     return;
+                }
+                if (currentColor == "Eraser") {
+                    target.classList.add("noHover");
+                    target.classList.remove("blue");
+                    target.classList.remove("green");
+                    target.classList.remove("red");
+                    return;
                 }      
             }      
+        });
+    });
+
+    // Clear button
+    const clear = document.querySelector('#clear');
+    clear.addEventListener("click", function() {
+        targets.forEach(target => {
+            target.classList.add("noHover");
+            target.classList.remove("blue");
+            target.classList.remove("green");
+            target.classList.remove("red");
         });
     });
 });

@@ -5,12 +5,19 @@ const button = document.querySelector('#create');
 const list = document.querySelector('ul');
 const input = document.querySelector('input');
 
-let currentColor = "Black";
+// Defaults 
+let currentColor = "Black"; 
 let randomize = false;
 let size = '';
 
-function isNumber(value) {
-    return typeof value === 'number';
+// Get random color
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
 button.addEventListener("click", function () {
@@ -91,25 +98,15 @@ button.addEventListener("click", function () {
             if (isMouseDown) {
                 // Randomize button
                 if (randomize) {
-                    let choice = Math.floor(Math.random() * 3);
-                    switch (choice) {
-                        case 0:
-                            currentColor = "Red";
-                            break;
-                        case 1:
-                            currentColor = "Blue";
-                            break;
-                        case 2:
-                            currentColor = "Green";
-                            break;
-                        default:
-                            break;
-                    }
+                    target.setAttribute("class", "box");
+                    target.setAttribute("style", "background-color: " + getRandomColor());
+                    return;
                 }
                 console.log(currentColor);
 
                 // Set class to only box and then set color 
                 target.setAttribute("class", "box");
+                target.removeAttribute("style");
                 target.classList.add(currentColor.toLowerCase());
                 return;     
             }      

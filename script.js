@@ -27,7 +27,7 @@ button.addEventListener("click", function () {
     }
     const size = input.value;
 
-    // Grid Creation
+    // GRID CREATION
     // Create Row 
     for (i = 0; i < size; i++) {
         // Make a div to append each box to be a row 
@@ -38,8 +38,6 @@ button.addEventListener("click", function () {
         for (j = 0; j < size; j++) {
             const box = document.createElement("div");
             box.classList.add("box");
-            box.classList.add("noHover");
-
             row.appendChild(box);
         }
 
@@ -47,7 +45,7 @@ button.addEventListener("click", function () {
     grid.appendChild(row);
     }
 
-    // Choose Color
+    // COLOR SELECTION
     const colors = document.querySelectorAll('.color');
 
     colors.forEach(color => {
@@ -59,14 +57,14 @@ button.addEventListener("click", function () {
         });
     });
 
-    // RANDOM BUTTON
+    // Toggle random
     const random = document.querySelector('.random');
     random.addEventListener("click", function () {
         randomize = true;
         console.log(randomize);
     });
 
-    // Look at all boxes made 
+    // CHANGING BOXES
     const targets = document.querySelectorAll('.box');
 
     // Check if holding down mouse
@@ -85,10 +83,7 @@ button.addEventListener("click", function () {
     targets.forEach(target => {
         target.addEventListener("mouseover", function () {
             if (isMouseDown) {
-                // set attribute of the box to a different color 
-                // removes all class from div
-
-                // adds class to your new div
+                // Randomize button
                 if (randomize) {
                     let choice = Math.floor(Math.random() * 3);
                     switch (choice) {
@@ -106,46 +101,11 @@ button.addEventListener("click", function () {
                     }
                 }
                 console.log(currentColor);
-                if (currentColor == "Black") {
-                    target.classList.remove("noHover");
-                    target.classList.remove("blue");
-                    target.classList.remove("green");
-                    target.classList.remove("red");
-                    target.classList.add("black");
-                    return;
-                }
-                if (currentColor == "Red") {
-                    target.classList.remove("noHover");
-                    target.classList.remove("blue");
-                    target.classList.remove("green");
-                    target.classList.remove("black");
-                    target.classList.add("red");
-                    return;
-                }
-                if (currentColor == "Green") {
-                    target.classList.remove("noHover");
-                    target.classList.remove("blue");
-                    target.classList.remove("red");
-                    target.classList.remove("black");
-                    target.classList.add("green");
-                    return;
-                }
-                if (currentColor == "Blue") {
-                    target.classList.remove("noHover");
-                    target.classList.remove("green");
-                    target.classList.remove("red");
-                    target.classList.remove("black");
-                    target.classList.add("blue");
-                    return;
-                }
-                if (currentColor == "Eraser") {
-                    target.classList.add("noHover");
-                    target.classList.remove("blue");
-                    target.classList.remove("green");
-                    target.classList.remove("red");
-                    target.classList.remove("black");
-                    return;
-                }      
+
+                // Set class to only box and then set color 
+                target.setAttribute("class", "box");
+                target.classList.add(currentColor.toLowerCase());
+                return;     
             }      
         });
     });
@@ -154,10 +114,7 @@ button.addEventListener("click", function () {
     const clear = document.querySelector('#clear');
     clear.addEventListener("click", function() {
         targets.forEach(target => {
-            target.classList.add("noHover");
-            target.classList.remove("blue");
-            target.classList.remove("green");
-            target.classList.remove("red");
+            target.setAttribute("class", "box");
         });
     });
 });

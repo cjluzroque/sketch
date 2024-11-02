@@ -1,5 +1,15 @@
 /* Styling for Etch-a-Sketch */
 
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -41,4 +51,10 @@ body {
 
 .blue {
     background-color: blue;
+}
+
+#current {
+    border: solid 1px black;
+    padding: 1px 10px;
+    margin: 4px;
 }

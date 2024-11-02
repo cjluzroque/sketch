@@ -4,6 +4,7 @@
 const button = document.querySelector('#create');
 const list = document.querySelector('ul');
 const input = document.querySelector('input');
+const current = document.querySelector('#current');
 
 // Defaults 
 let currentColor = "Black"; 
@@ -64,7 +65,10 @@ button.addEventListener("click", function () {
     colors.forEach(color => {
         color.addEventListener("click", function () {
             randomize = false;
+            current.setAttribute("class", "");
+            current.removeAttribute("style");
             currentColor = color.textContent;
+            current.classList.add(currentColor.toLowerCase());
             console.log(currentColor);
             console.log(randomize);
         });
@@ -74,6 +78,8 @@ button.addEventListener("click", function () {
     const random = document.querySelector('.random');
     random.addEventListener("click", function () {
         randomize = true;
+        current.setAttribute("class", "");
+        current.classList.add("eraser");
         console.log(randomize);
     });
 
@@ -99,7 +105,10 @@ button.addEventListener("click", function () {
                 // Randomize button
                 if (randomize) {
                     target.setAttribute("class", "box");
-                    target.setAttribute("style", "background-color: " + getRandomColor());
+                    current.setAttribute("class", "");
+                    let newColor = getRandomColor();
+                    current.setAttribute("style", "background-color: " + newColor);
+                    target.setAttribute("style", "background-color: " + newColor);
                     return;
                 }
                 console.log(currentColor);

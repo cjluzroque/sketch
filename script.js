@@ -1,15 +1,17 @@
 // Script for Etch-a-Sketch
 
 //Create three variables that hold references to the list (<ul>), <input>, and <button> elements.
-const button = document.querySelector('button');
+const button = document.querySelector('#create');
 const list = document.querySelector('ul');
 const input = document.querySelector('input');
 
+let currentColor;
 
 button.addEventListener("click", function () {
 
     // Clear the current grid
     const grid = document.querySelector('#container');
+    grid.classList.add("grid");
     while (grid.firstChild) {
         grid.removeChild(grid.lastChild);
     }
@@ -44,22 +46,62 @@ button.addEventListener("click", function () {
     grid.appendChild(row);
     }
 
+    // Choose Color
+    const colors = document.querySelectorAll('.color');
+
+    colors.forEach(color => {
+        color.addEventListener("click", function () {
+            currentColor = color.textContent;
+            console.log(currentColor);
+        });
+    });
+
     // Look at all boxes made 
-    const targets = document.querySelectorAll('.box')
+    const targets = document.querySelectorAll('.box');
+
+    // Check if holding down mouse
+    let isMouseDown = false;
+    targets.forEach(target => {
+        target.addEventListener('mousedown', () => {
+            isMouseDown = true;
+            console.log(".");
+        });
+        
+        target.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+    });
 
     // Event listener for hover action for any box 
     targets.forEach(target => {
         target.addEventListener("mouseover", function () {
+            if (isMouseDown) {
+                // set attribute of the box to a different color 
+                // removes all class from div
 
-            target.addEventListener("mouseover", function () {
-            // set attribute of the box to a different color 
-            // adds class "hover" to your new div
-            target.classList.add("hover");
-
-            // removes "noHover" class from div
-            target.classList.remove("noHover");
-
-            });
+                // adds class to your new div
+                if (currentColor == "Red") {
+                    target.classList.remove("noHover");
+                    target.classList.remove("blue");
+                    target.classList.remove("green");
+                    target.classList.add("red");
+                    return;
+                }
+                if (currentColor == "Green") {
+                    target.classList.remove("noHover");
+                    target.classList.remove("blue");
+                    target.classList.remove("red");
+                    target.classList.add("green");
+                    return;
+                }
+                if (currentColor == "Blue") {
+                    target.classList.remove("noHover");
+                    target.classList.remove("green");
+                    target.classList.remove("red");
+                    target.classList.add("blue");
+                    return;
+                }      
+            }      
         });
     });
 

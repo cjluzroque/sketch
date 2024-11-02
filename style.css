@@ -1,11 +1,15 @@
 /* Styling for Etch-a-Sketch */
 
-
-#container {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 200px;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: solid 1px black;
 }
 
@@ -19,9 +23,17 @@
 }
 
 .noHover {
+    background-color: white;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
     background-color: green;
 }
 
-.hover {
-    background-color: pink;
+.blue {
+    background-color: blue;
 }

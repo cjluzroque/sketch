@@ -5,7 +5,7 @@ const button = document.querySelector('#create');
 const list = document.querySelector('ul');
 const input = document.querySelector('input');
 
-let currentColor;
+let currentColor = "Black";
 let randomize = false;
 
 button.addEventListener("click", function () {
@@ -106,11 +106,19 @@ button.addEventListener("click", function () {
                     }
                 }
                 console.log(currentColor);
-
+                if (currentColor == "Black") {
+                    target.classList.remove("noHover");
+                    target.classList.remove("blue");
+                    target.classList.remove("green");
+                    target.classList.remove("red");
+                    target.classList.add("black");
+                    return;
+                }
                 if (currentColor == "Red") {
                     target.classList.remove("noHover");
                     target.classList.remove("blue");
                     target.classList.remove("green");
+                    target.classList.remove("black");
                     target.classList.add("red");
                     return;
                 }
@@ -118,6 +126,7 @@ button.addEventListener("click", function () {
                     target.classList.remove("noHover");
                     target.classList.remove("blue");
                     target.classList.remove("red");
+                    target.classList.remove("black");
                     target.classList.add("green");
                     return;
                 }
@@ -125,6 +134,7 @@ button.addEventListener("click", function () {
                     target.classList.remove("noHover");
                     target.classList.remove("green");
                     target.classList.remove("red");
+                    target.classList.remove("black");
                     target.classList.add("blue");
                     return;
                 }
@@ -133,6 +143,7 @@ button.addEventListener("click", function () {
                     target.classList.remove("blue");
                     target.classList.remove("green");
                     target.classList.remove("red");
+                    target.classList.remove("black");
                     return;
                 }      
             }      

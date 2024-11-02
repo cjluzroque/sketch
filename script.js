@@ -6,6 +6,7 @@ const list = document.querySelector('ul');
 const input = document.querySelector('input');
 
 let currentColor;
+let randomize = false;
 
 button.addEventListener("click", function () {
 
@@ -51,10 +52,21 @@ button.addEventListener("click", function () {
 
     colors.forEach(color => {
         color.addEventListener("click", function () {
+            randomize = false;
             currentColor = color.textContent;
             console.log(currentColor);
+            console.log(randomize);
         });
     });
+
+    // RANDOM BUTTON
+    const random = document.querySelector('.random');
+    random.addEventListener("click", function () {
+        randomize = true;
+        console.log(randomize);
+    });
+
+
 
     // Look at all boxes made 
     const targets = document.querySelectorAll('.box');
@@ -64,7 +76,6 @@ button.addEventListener("click", function () {
     targets.forEach(target => {
         target.addEventListener('mousedown', () => {
             isMouseDown = true;
-            console.log(".");
         });
         
         target.addEventListener('mouseup', () => {
@@ -80,6 +91,24 @@ button.addEventListener("click", function () {
                 // removes all class from div
 
                 // adds class to your new div
+                if (randomize) {
+                    let choice = Math.floor(Math.random() * 3);
+                    switch (choice) {
+                        case 0:
+                            currentColor = "Red";
+                            break;
+                        case 1:
+                            currentColor = "Blue";
+                            break;
+                        case 2:
+                            currentColor = "Green";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                console.log(currentColor);
+
                 if (currentColor == "Red") {
                     target.classList.remove("noHover");
                     target.classList.remove("blue");
@@ -104,5 +133,4 @@ button.addEventListener("click", function () {
             }      
         });
     });
-
 });

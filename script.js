@@ -7,8 +7,18 @@ const input = document.querySelector('input');
 
 let currentColor = "Black";
 let randomize = false;
+let size = '';
 
 button.addEventListener("click", function () {
+
+    // Check input and then if under 100, set as the size
+    if (input.value == '') return;
+    if (input.value > 100) {
+        alert("Keep below 100");
+        input.value = size;
+        input.focus();
+        return;
+    }
 
     // Clear the current grid
     const grid = document.querySelector('#container');
@@ -17,15 +27,7 @@ button.addEventListener("click", function () {
         grid.removeChild(grid.lastChild);
     }
 
-    // Check input and then if under 100, set as the size
-    if (input.value == '') return;
-    if (input.value > 100) {
-        input.value == '';
-        input.focus();
-        alert("Keep below 100");
-        return;
-    }
-    const size = input.value;
+    size = input.value;
 
     // GRID CREATION
     // Create Row 

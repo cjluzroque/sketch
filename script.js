@@ -89,38 +89,47 @@ button.addEventListener("click", function () {
     // Check if holding down mouse
     let isMouseDown = false;
     targets.forEach(target => {
-        target.addEventListener('mousedown', () => {
-            isMouseDown = true;
+
+        ['mousedown', 'touchstart'].forEach(function(e) {
+            target.addEventListener(e, () => {
+                isMouseDown = true;
+                console.log(isMouseDown);
+            });
         });
-        
-        target.addEventListener('mouseup', () => {
-            isMouseDown = false;
+
+        ['mouseup', 'touchend'].forEach(function(e) {    
+            target.addEventListener(e, () => {
+                isMouseDown = false;
+                console.log(isMouseDown);
+            });
         });
     });
 
     // Event listener for hover action for any box 
     targets.forEach(target => {
-        target.addEventListener("mouseover", function () {
-            if (isMouseDown) {
-                // Randomize button
-                if (randomize) {
-                    target.setAttribute("class", "box");
-                    current.setAttribute("class", "");
-                    let newColor = getRandomColor();
-                    current.setAttribute("style", "background-color: " + newColor);
-                    target.setAttribute("style", "background-color: " + newColor);
-                    return;
-                }
-                console.log(currentColor);
+        ['mouseover', 'touchmove'].forEach(function(e) {
+            target.addEventListener(e, function () {
+                if (isMouseDown) {
+                    // Randomize button
+                    if (randomize) {
+                        target.setAttribute("class", "box");
+                        current.setAttribute("class", "");
+                        let newColor = getRandomColor();
+                        current.setAttribute("style", "background-color: " + newColor);
+                        target.setAttribute("style", "background-color: " + newColor);
+                        return;
+                    }
+                    console.log(currentColor);
 
-                // Set class to only box and then set color 
-                target.setAttribute("class", "box");
-                target.removeAttribute("style");
-                if (currentColor.toLowerCase() != "eraser") {
-                    target.classList.add(currentColor.toLowerCase());
-                }
-                return;     
-            }      
+                    // Set class to only box and then set color 
+                    target.setAttribute("class", "box");
+                    target.removeAttribute("style");
+                    if (currentColor.toLowerCase() != "eraser") {
+                        target.classList.add(currentColor.toLowerCase());
+                    }
+                    return;     
+                };      
+            });
         });
     });
 
